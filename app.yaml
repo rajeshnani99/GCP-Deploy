@@ -3,8 +3,6 @@
 runtime: nodejs16
 service: default
 
-env_variables: MONGO_URL: 'mongodb+srv://chatApp:chatApp@cluster0.mgoskpu.mongodb.net/?retryWrites=true&w=majority'
-
 handlers:
   - url: /.*
     secure: always

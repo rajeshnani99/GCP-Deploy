@@ -2,6 +2,7 @@
 
 const express = require("express");
 const app = express();
+const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -12,9 +13,15 @@ const User = require("./models/userModel");
 const groupchat = require("./models/groupchatModel");
 
 dotenv.config();
-app.use(cors());
-app.use(express.json());
 
+app.use(cors());
+
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "../build")));
+
+app.get("/*", function (req, res) {
+	res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 app.use("/api/auth", userRoutes);
 app.use("/api/message", messageRoute);
 
